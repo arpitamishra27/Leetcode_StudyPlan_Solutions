@@ -1,0 +1,14 @@
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        #hashMap usage because of key and value pair
+        #any operation in a hashmap is O(1) time.
+        nums_count= defaultdict(int)
+        for num in nums:
+            nums_count[num]+=1
+        
+        n=len(nums)//2
+        for key, value in nums_count.items():
+            if value>n:
+                return key
+       
+        return 
