@@ -1,0 +1,36 @@
+class Solution {
+    public int[][] divideArray(int[] nums, int k) {
+        int n = nums.length;
+
+        // Sort the array
+        Arrays.sort(nums);
+
+        List<List<Integer>> result = new ArrayList<>();
+
+        // Iterate through the sorted array and form triples
+        for (int i = 0; i < n; i += 3) {
+            if (i + 2 < n) {
+                // form a triple
+                List<Integer> currentArray = Arrays.asList(nums[i], nums[i + 1], nums[i + 2]);
+
+                // Check the conditions
+                if (Math.abs(currentArray.get(0) - currentArray.get(1)) <= k
+                        && Math.abs(currentArray.get(1) - currentArray.get(2)) <= k
+                        && Math.abs(currentArray.get(0) - currentArray.get(2)) <= k) {
+                    result.add(currentArray);
+                } else {
+                    // If conditions are not satisfied, return an empty array
+                    return new int[][] {};
+                }
+            }
+        }
+        int[][] resultArray = new int[result.size()][3];
+        for (int i = 0; i < result.size(); i++) {
+            for (int j = 0; j < 3; j++) {
+                resultArray[i][j] = result.get(i).get(j);
+            }
+        }
+
+        return resultArray;
+    }
+}
